@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet var redLight: UIView!
     @IBOutlet var yellowLight: UIView!
     @IBOutlet var greenLight: UIView!
@@ -17,11 +17,33 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        redLight.layer.cornerRadius = 40
+        yellowLight.layer.cornerRadius = 40
+        greenLight.layer.cornerRadius = 40
+        switchButton.layer.cornerRadius = 15
     }
-
+    
     @IBAction func switchButtonClicked() {
+        
+        if (redLight.layer.opacity == 1) {
+            redLight.layer.opacity = 0.3
+            yellowLight.layer.opacity = 1
+            
+        } else if (yellowLight.layer.opacity == 1) {
+            yellowLight.layer.opacity = 0.3
+            greenLight.layer.opacity = 1
+            
+        } else if (greenLight.layer.opacity == 1) {
+            greenLight.layer.opacity = 0.3
+            redLight.layer.opacity = 1
+        }
+        
+        // first time click
+        if (switchButton.currentTitle != "NEXT") {
+            switchButton.setTitle("NEXT", for: .normal)
+            redLight.layer.opacity = 1
+        }
+        
     }
     
 }
-
